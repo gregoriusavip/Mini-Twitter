@@ -11,6 +11,7 @@ class AdminHandler  {
 
     private static volatile AdminHandler instance;
     private final Set<UserEntity> root = new HashSet<>();
+    private final Set<User> userPool = new HashSet<>();
 
     private AdminHandler() {
     }
@@ -25,10 +26,13 @@ class AdminHandler  {
         }
         return instance;
     }
-
-    public void addUser(User user){
-        //Event Handler when group is not root
-        root.add(user);
+    public boolean addUser(User user){
+        if(!userPool.contains(user)){
+            userPool.add(user);
+            root.add(user);
+            return true;
+        }
+        return false;
     }
 
     public void addGroup(Group group){

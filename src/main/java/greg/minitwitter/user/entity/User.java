@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class User implements UserEntity {
-    private final String userid;
+    private final String userID;
     private String groupID;
     private Set<String> followers;
     private Set<String> following;
@@ -15,13 +15,14 @@ public class User implements UserEntity {
         implement news
         add news variable
     */
-    public User(String userid){
-        this.userid = userid;
+    public User(String userID, String groupID){
+        this.userID = userID;
+        this.groupID = groupID;
         followers = new HashSet<>();
         following = new HashSet<>();
     }
     public boolean setGroupID(String groupID){
-        if (this.groupID == null) {
+        if (this.groupID.equals("root")) {
             this.groupID = groupID;
             return true;
         }
@@ -44,7 +45,7 @@ public class User implements UserEntity {
     @Override
     public int hashCode(){
         return new HashCodeBuilder(17, 31).
-                append(userid).
+                append(userID).
                 toHashCode();
     }
     @Override
@@ -55,11 +56,11 @@ public class User implements UserEntity {
             return true;
 
         return new EqualsBuilder().
-                append(userid, other.getUserid()).isEquals();
+                append(userID, other.getUserID()).isEquals();
     }
 
-    public String getUserid(){
-        return userid;
+    public String getUserID(){
+        return userID;
     }
 
     public User getInstance(){
@@ -68,6 +69,6 @@ public class User implements UserEntity {
 
     @Override
     public void Display(){
-        System.out.println(userid);
+        System.out.println(userID);
     }
 }

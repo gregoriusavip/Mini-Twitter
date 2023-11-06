@@ -1,5 +1,6 @@
 package greg.minitwitter.admin;
 
+import greg.minitwitter.user.entity.UserBuilder;
 import greg.minitwitter.user.entity.UserEntity;
 
 import java.util.Set;
@@ -22,6 +23,22 @@ public class AdminView implements UserEntity {
             }
         }
         return instance;
+    }
+    public void addUser(String userID){
+        if(admin.addUser(new UserBuilder(userID).build())){
+            System.out.println("Successfully added user");
+            Update();
+            return;
+        }
+        System.out.println("User already exist");
+    }
+    public void addUser(String userID, String groupID){
+        if(admin.addUser(new UserBuilder(userID).setGroupID(groupID).build())){
+            System.out.println("Successfully added user");
+            Update();
+            return;
+        }
+        System.out.println("User already exist");
     }
     @Override
     public void Display(){
