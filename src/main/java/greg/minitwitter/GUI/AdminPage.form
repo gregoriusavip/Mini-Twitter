@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="7" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="729" height="483"/>
+      <xy x="20" y="20" width="468" height="371"/>
     </constraints>
     <properties/>
     <border type="bevel-lowered"/>
@@ -11,8 +11,8 @@
       <scrollpane id="f1793" binding="treePane">
         <constraints>
           <grid row="1" column="0" row-span="6" col-span="1" vsize-policy="7" hsize-policy="7" anchor="8" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="214" height="600"/>
-            <maximum-size width="250" height="600"/>
+            <preferred-size width="214" height="-1"/>
+            <maximum-size width="250" height="-1"/>
           </grid>
         </constraints>
         <properties>
@@ -31,7 +31,7 @@
       </scrollpane>
       <component id="4545" class="javax.swing.JLabel" binding="userGroupListLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="214" height="17"/>
             <maximum-size width="100" height="17"/>
           </grid>
