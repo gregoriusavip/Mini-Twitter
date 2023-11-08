@@ -28,6 +28,7 @@ class AdminHandler  {
     }
     public boolean addUser(User user){
         if(!userPool.contains(user)){
+            System.out.println("User not found");   //debug
             userPool.add(user);
             root.add(user);
             return true;
