@@ -35,12 +35,15 @@ class AdminHandler  {
         return false;
     }
 
-    public void addGroup(Group group){
-        root.add(group);
+    public boolean addGroup(Group group) {
+        if (!root.contains(group)) {
+            root.add(group);
+            return true;
+        }
+        return false;
     }
 
     public Set<UserEntity> getRoot(){
         return new HashSet<>(root);
     }
-
 }

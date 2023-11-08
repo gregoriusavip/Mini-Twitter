@@ -3,6 +3,7 @@ package greg.minitwitter.admin;
 import greg.minitwitter.user.entity.UserBuilder;
 import greg.minitwitter.user.entity.UserEntity;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.Set;
 
 public class AdminView implements UserEntity {
@@ -41,11 +42,10 @@ public class AdminView implements UserEntity {
         System.out.println("User already exist");
     }
     @Override
-    public void Display(){
+    public void Display(DefaultMutableTreeNode node){
         Update();
-        System.out.println("Displaying User Tree List");
         for(UserEntity entity : root){
-            entity.Display();
+            entity.Display(node);
         }
     }
 
