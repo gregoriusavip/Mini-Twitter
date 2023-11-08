@@ -43,6 +43,9 @@ public class User implements UserEntity {
         }
         return false;
     }
+    private String getUserID(){
+        return userID;
+    }
 
     @Override
     public void Display(DefaultMutableTreeNode node){
@@ -62,6 +65,6 @@ public class User implements UserEntity {
             return true;
 
         return new EqualsBuilder().
-                append(userID, other.toString()).isEquals();
+                append(userID, other.getUserID()).isEquals();
     }
 }
