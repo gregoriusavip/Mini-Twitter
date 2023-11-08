@@ -3,6 +3,7 @@ package greg.minitwitter.user.entity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +25,14 @@ public class Group implements UserEntity {
         return groupID;
     }
     @Override
+    public void Display(DefaultMutableTreeNode node){
+        DefaultMutableTreeNode group = new DefaultMutableTreeNode("another_child", false);
+        node.add(group);
+        for (User user: userSet){
+            user.Display(group);
+        }
+    }
+    @Override
     public int hashCode(){
         return new HashCodeBuilder(17, 31).
                 append(groupID).
@@ -38,16 +47,6 @@ public class Group implements UserEntity {
 
         return new EqualsBuilder().
                 append(groupID, other.getGroupID()).isEquals();
-    }
-    @Override
-    public void Display(){
-        System.out.println(groupID);
-        for(User user: userSet){
-            user.Display();
-        }
-    }
-    public Group getInstance(){
-        return this;
     }
 }
 

@@ -2,6 +2,7 @@ package greg.minitwitter.user.entity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +43,11 @@ public class User implements UserEntity {
         }
         return false;
     }
+
+    @Override
+    public void Display(DefaultMutableTreeNode node){
+        node.add(new DefaultMutableTreeNode(userID));
+    }
     @Override
     public int hashCode(){
         return new HashCodeBuilder(17, 31).
@@ -56,19 +62,6 @@ public class User implements UserEntity {
             return true;
 
         return new EqualsBuilder().
-                append(userID, other.getUserID()).isEquals();
-    }
-
-    public String getUserID(){
-        return userID;
-    }
-
-    public User getInstance(){
-        return this;
-    }
-
-    @Override
-    public void Display(){
-        System.out.println(userID);
+                append(userID, other.toString()).isEquals();
     }
 }
