@@ -44,6 +44,7 @@ public class AdminView implements UserEntity {
     @Override
     public void Display(DefaultMutableTreeNode node){
         Update();
+        System.out.println(root);
         for(UserEntity entity : root){
             entity.Display(node);
         }

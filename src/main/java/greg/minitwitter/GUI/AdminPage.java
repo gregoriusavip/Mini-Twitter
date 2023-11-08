@@ -12,13 +12,13 @@ public class AdminPage extends JFrame{
     private JScrollPane treePane;
     private JTextField textField1;
     private JTextField textField2;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
+    private JButton addUserButton;
+    private JButton addGroupButton;
+    private JButton stat1Button1;
+    private JButton stat2Button;
+    private JButton stat3Button;
+    private JButton stat4Button;
+    private JButton switchToUserViewButton;
     private JLabel userGroupListLabel;
     private final AdminView view;
     private final DefaultTreeModel treeModel = (DefaultTreeModel)tree1.getModel();
@@ -34,11 +34,21 @@ public class AdminPage extends JFrame{
         view = AdminView.getInstance();
 
         Display();
+
+        addUserButton.addActionListener(e -> {
+            addUser();
+        });
     }
 
     private void Display(){
+        root.removeAllChildren();
         view.Display(root);
-        treeModel.reload(root);
+        treeModel.reload();
+    }
+
+    private void addUser(){
+        view.addUser(textField1.getText());
+        Display();
     }
 
     private void createUIComponents() {

@@ -58,7 +58,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="ac385" class="javax.swing.JButton" binding="button1" default-binding="true">
+      <component id="ac385" class="javax.swing.JButton" binding="addUserButton">
         <constraints>
           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="250" height="25"/>
@@ -66,10 +66,10 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Add User"/>
         </properties>
       </component>
-      <component id="32805" class="javax.swing.JButton" binding="button2" default-binding="true">
+      <component id="32805" class="javax.swing.JButton" binding="addGroupButton" default-binding="true">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="250" height="25"/>
@@ -77,10 +77,10 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Add Group"/>
         </properties>
       </component>
-      <component id="f7b9f" class="javax.swing.JButton" binding="button3" default-binding="true">
+      <component id="f7b9f" class="javax.swing.JButton" binding="stat1Button1" default-binding="true">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="250" height="25"/>
@@ -88,10 +88,10 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Stat1"/>
         </properties>
       </component>
-      <component id="fcb76" class="javax.swing.JButton" binding="button5" default-binding="true">
+      <component id="fcb76" class="javax.swing.JButton" binding="stat3Button" default-binding="true">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="250" height="25"/>
@@ -99,10 +99,10 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Stat3"/>
         </properties>
       </component>
-      <component id="51dc9" class="javax.swing.JButton" binding="button6" default-binding="true">
+      <component id="51dc9" class="javax.swing.JButton" binding="stat4Button" default-binding="true">
         <constraints>
           <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="250" height="25"/>
@@ -110,7 +110,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Stat4"/>
         </properties>
       </component>
       <component id="a7b03" class="javax.swing.JTextField" binding="textField2" default-binding="true">
@@ -122,7 +122,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="12f55" class="javax.swing.JButton" binding="button7" default-binding="true">
+      <component id="12f55" class="javax.swing.JButton" binding="switchToUserViewButton" default-binding="true">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="150" height="25"/>
@@ -130,10 +130,10 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Switch to user view"/>
         </properties>
       </component>
-      <component id="6cd6" class="javax.swing.JButton" binding="button4" default-binding="true">
+      <component id="6cd6" class="javax.swing.JButton" binding="stat2Button" default-binding="true">
         <constraints>
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
             <preferred-size width="250" height="25"/>
@@ -141,7 +141,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Stat2"/>
         </properties>
       </component>
       <component id="684c6" class="javax.swing.JSeparator">
