@@ -1,5 +1,7 @@
 package greg.minitwitter.GUI;
 
+import greg.minitwitter.admin.AdminView;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -18,18 +20,25 @@ public class AdminPage extends JFrame{
     private JButton button6;
     private JButton button7;
     private JLabel userGroupListLabel;
-
-
+    private final AdminView view;
+    private final DefaultTreeModel treeModel = (DefaultTreeModel)tree1.getModel();
+    private final DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
     public AdminPage() {
+        // Set the Admin panel window
         setContentPane(panel1);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(300, 400);
+        setSize(1280, 720);
         setVisible(true);
 
-        DefaultTreeModel model = (DefaultTreeModel)tree1.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
-        root.add(new DefaultMutableTreeNode("another_child"));
-        model.reload(root);
+        // Initialize AdminView
+        view = AdminView.getInstance();
+
+        Display();
+    }
+
+    private void Display(){
+        view.Display(root);
+        treeModel.reload(root);
     }
 
     private void createUIComponents() {
