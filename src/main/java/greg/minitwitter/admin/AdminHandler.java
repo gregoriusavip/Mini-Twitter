@@ -2,7 +2,6 @@ package greg.minitwitter.admin;
 
 import greg.minitwitter.user.entity.Group;
 import greg.minitwitter.user.entity.User;
-import greg.minitwitter.user.entity.Entity;
 
 import java.util.HashSet;
 import java.util.Set;
