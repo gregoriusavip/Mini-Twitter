@@ -5,7 +5,6 @@ import greg.minitwitter.user.entity.User;
 import greg.minitwitter.user.entity.Entity;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-import java.util.Set;
 
 public class AdminView {
 

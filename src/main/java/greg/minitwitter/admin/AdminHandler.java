@@ -10,7 +10,7 @@ import java.util.Set;
 class AdminHandler {
 
     private static volatile AdminHandler instance;
-    private final Set<Entity> entities = new HashSet<>();
+    private final Set<String> entities = new HashSet<>();
 
     private AdminHandler() {
     }
@@ -26,18 +26,18 @@ class AdminHandler {
         return instance;
     }
     public boolean addUser(User user){
-        if(!entities.contains(user)){
+        if(!entities.contains(user.getID())){
             System.out.println("User not found");   //debug
-            entities.add(user);
+            entities.add(user.getID());
             return user.getGroup().addUser(user);
         }
         return false;
     }
 
     public boolean addGroup(Group group) {
-        if (!entities.contains(group)) {
+        if (!entities.contains(group.getID())) {
             System.out.println("Group not found");   //debug
-            entities.add(group);
+            entities.add(group.getID());
             return group.getGroup().addGroup(group);
         }
         return false;
