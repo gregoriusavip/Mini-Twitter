@@ -7,7 +7,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Group implements Entity, UserGroup {
+public class Group implements Entity {
     private final String groupID;
     private final Group group;
     private final Set<Entity> userGroupSet;
@@ -51,7 +51,7 @@ public class Group implements Entity, UserGroup {
     }
     @Override
     public boolean equals(Object object){
-        if(!(object instanceof UserGroup other))
+        if(!(object instanceof Entity other))
             return false;
         if (object == this)
             return true;
