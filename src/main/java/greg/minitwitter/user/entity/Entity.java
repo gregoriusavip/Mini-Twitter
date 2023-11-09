@@ -2,6 +2,6 @@ package greg.minitwitter.user.entity;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public interface UserEntity {
+public interface Entity {
     public void Display(DefaultMutableTreeNode node);
 }
