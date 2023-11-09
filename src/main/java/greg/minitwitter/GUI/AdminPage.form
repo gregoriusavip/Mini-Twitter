@@ -11,8 +11,8 @@
       <scrollpane id="f1793" binding="treePane">
         <constraints>
           <grid row="1" column="0" row-span="6" col-span="1" vsize-policy="1" hsize-policy="7" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="300" height="720"/>
-            <maximum-size width="300" height="720"/>
+            <preferred-size width="350" height="720"/>
+            <maximum-size width="350" height="720"/>
           </grid>
         </constraints>
         <properties>
@@ -125,8 +125,8 @@
       <component id="12f55" class="javax.swing.JButton" binding="switchToUserViewButton" default-binding="true">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="150" height="25"/>
-            <maximum-size width="150" height="25"/>
+            <preferred-size width="200" height="25"/>
+            <maximum-size width="200" height="25"/>
           </grid>
         </constraints>
         <properties>

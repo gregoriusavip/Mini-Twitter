@@ -7,7 +7,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Group implements UserEntity {
+public class Group implements Entity, UserGroup {
     private final String groupID;
     private final Set<User> userSet;
     public Group(String groupID){
@@ -21,12 +21,13 @@ public class Group implements UserEntity {
         }
         return false;
     }
-    public String getGroupID(){
+    @Override
+    public String getID(){
         return groupID;
     }
     @Override
     public void Display(DefaultMutableTreeNode node){
-        DefaultMutableTreeNode group = new DefaultMutableTreeNode("another_child", false);
+        DefaultMutableTreeNode group = new DefaultMutableTreeNode(this);
         node.add(group);
         for (User user: userSet){
             user.Display(group);
@@ -40,13 +41,18 @@ public class Group implements UserEntity {
     }
     @Override
     public boolean equals(Object object){
-        if(!(object instanceof Group other))
+        if(!(object instanceof UserGroup other))
             return false;
         if (object == this)
             return true;
 
         return new EqualsBuilder().
-                append(groupID, other.getGroupID()).isEquals();
+                append(groupID, other.getID()).isEquals();
+    }
+
+    @Override
+    public String toString(){
+        return groupID;
     }
 }
 

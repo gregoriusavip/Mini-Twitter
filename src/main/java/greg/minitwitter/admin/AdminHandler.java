@@ -2,7 +2,7 @@ package greg.minitwitter.admin;
 
 import greg.minitwitter.user.entity.Group;
 import greg.minitwitter.user.entity.User;
-import greg.minitwitter.user.entity.UserEntity;
+import greg.minitwitter.user.entity.Entity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,8 @@ import java.util.Set;
 class AdminHandler  {
 
     private static volatile AdminHandler instance;
-    private final Set<UserEntity> root = new HashSet<>();
-    private final Set<User> userPool = new HashSet<>();
+    private final Set<Entity> root = new HashSet<>();
+    private final Set<Entity> userPool = new HashSet<>();
 
     private AdminHandler() {
     }
@@ -27,7 +27,7 @@ class AdminHandler  {
         return instance;
     }
     public boolean addUser(User user){
-        if(!userPool.contains(user)){
+        if(!userPool.contains(user) && (!root.contains(user))){
             System.out.println("User not found");   //debug
             userPool.add(user);
             root.add(user);
@@ -37,14 +37,15 @@ class AdminHandler  {
     }
 
     public boolean addGroup(Group group) {
-        if (!root.contains(group)) {
+        if (!userPool.contains(group) && !root.contains(group)) {
+            System.out.println("Group not found");   //debug
             root.add(group);
             return true;
         }
         return false;
     }
 
-    public Set<UserEntity> getRoot(){
+    public Set<Entity> getRoot(){
         return new HashSet<>(root);
     }
 }

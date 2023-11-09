@@ -5,6 +5,7 @@ import greg.minitwitter.admin.AdminView;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
 
 public class AdminPage extends JFrame{
     private JPanel panel1;
@@ -27,16 +28,33 @@ public class AdminPage extends JFrame{
         // Set the Admin panel window
         setContentPane(panel1);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(1280, 720);
+        setSize(960, 720);
         setVisible(true);
 
         // Initialize AdminView
         view = AdminView.getInstance();
 
+        // Set tree to listen for selection
+        tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        tree1.addTreeSelectionListener(e -> {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+            if (node == null)
+                return;
+
+            Object nodeInfo = node.getUserObject();
+            addUserButton.setEnabled(node.isRoot() || node.getAllowsChildren());
+        });
+        // Display initial tree
         Display();
 
         addUserButton.addActionListener(e -> {
-            addUser();
+            if(textField1.getText().compareTo("") != 0)
+                addUser();
+        });
+
+        addGroupButton.addActionListener(e -> {
+            if(textField2.getText().compareTo("") != 0)
+                addGroup();
         });
     }
 
@@ -47,8 +65,19 @@ public class AdminPage extends JFrame{
     }
 
     private void addUser(){
-        view.addUser(textField1.getText());
-        Display();
+        if(view.addUser(textField1.getText())) {
+            textField1.setText("");
+            Display();  //just add the node to the root
+        }
+    }
+
+    //TODO: maybe overload addUser for if a group that isn't root is clicked
+
+    private void addGroup(){
+        if(view.addGroup(textField2.getText())) {
+            textField2.setText("");
+            Display();
+        }
     }
 
     private void createUIComponents() {

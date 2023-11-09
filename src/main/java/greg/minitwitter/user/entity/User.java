@@ -6,7 +6,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User implements UserEntity {
+public class User implements Entity, UserGroup {
     private final String userID;
     private String groupID;
     private Set<String> followers;
@@ -43,13 +43,14 @@ public class User implements UserEntity {
         }
         return false;
     }
-    private String getUserID(){
+    @Override
+    public String getID(){
         return userID;
     }
 
     @Override
     public void Display(DefaultMutableTreeNode node){
-        node.add(new DefaultMutableTreeNode(userID));
+        node.add(new DefaultMutableTreeNode(this, false));
     }
     @Override
     public int hashCode(){
@@ -59,12 +60,16 @@ public class User implements UserEntity {
     }
     @Override
     public boolean equals(Object object){
-        if(!(object instanceof User other))
+        if(!(object instanceof UserGroup other))
             return false;
         if (object == this)
             return true;
-
         return new EqualsBuilder().
-                append(userID, other.getUserID()).isEquals();
+                append(userID, other.getID()).isEquals();
+    }
+
+    @Override
+    public String toString(){
+        return userID;
     }
 }
