@@ -1,6 +1,7 @@
 package greg.minitwitter.GUI;
 
 import greg.minitwitter.admin.AdminView;
+import greg.minitwitter.user.entity.Group;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -34,6 +35,8 @@ public class AdminPage extends JFrame{
         // Initialize AdminView
         view = AdminView.getInstance();
 
+        updateButtonState();
+
         // Set tree to listen for selection
         tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree1.addTreeSelectionListener(e -> {
@@ -41,11 +44,9 @@ public class AdminPage extends JFrame{
             if (node == null)
                 return;
 
-            Object nodeInfo = node.getUserObject();
             addUserButton.setEnabled(node.isRoot() || node.getAllowsChildren());
+            addGroupButton.setEnabled(node.isRoot() || node.getAllowsChildren());
         });
-        // Display initial tree
-        Display();
 
         addUserButton.addActionListener(e -> {
             if(textField1.getText().compareTo("") != 0)
@@ -60,28 +61,40 @@ public class AdminPage extends JFrame{
 
     private void Display(){
         root.removeAllChildren();
-        view.Display(root);
+        view.Display((Group) root.getUserObject(), root);
         treeModel.reload();
     }
 
     private void addUser(){
-        if(view.addUser(textField1.getText())) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+        Object nodeInfo = node.getUserObject();
+        if(view.addUser(textField1.getText(), (Group) nodeInfo)) {
             textField1.setText("");
-            Display();  //just add the node to the root
+            updateButtonState();
+            Display();
         }
     }
 
     //TODO: maybe overload addUser for if a group that isn't root is clicked
 
     private void addGroup(){
-        if(view.addGroup(textField2.getText())) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+        Object nodeInfo = node.getUserObject();
+        if(view.addGroup(textField2.getText(), (Group) nodeInfo)) {
             textField2.setText("");
+            updateButtonState();
             Display();
         }
     }
 
+    private void updateButtonState(){
+        addUserButton.setEnabled(false);
+        addGroupButton.setEnabled(false);
+    }
+
     private void createUIComponents() {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
+        Group rootGroup = new Group("Root", null);
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(rootGroup);
         DefaultTreeModel treeModel = new DefaultTreeModel(root);
         treeModel.setAsksAllowsChildren(true);
         tree1 = new JTree(treeModel);

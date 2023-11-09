@@ -9,17 +9,27 @@ import java.util.Set;
 
 public class Group implements Entity, UserGroup {
     private final String groupID;
-    private final Set<User> userSet;
-    public Group(String groupID){
+    private final Group group;
+    private final Set<Entity> userGroupSet;
+    public Group(String groupID, Group group){
         this.groupID = groupID;
-        userSet = new HashSet<>();
+        this.group = group;
+        userGroupSet = new HashSet<>();
     }
     public boolean addUser(User user) {
-        if (!userSet.contains(user)){
-            userSet.add(user);
-            return true;
-        }
-        return false;
+        userGroupSet.add(user);
+        return true;
+    }
+    public boolean addGroup(Group group){
+        userGroupSet.add(group);
+        return true;
+    }
+    public Group getGroup(){
+        return group;
+    }
+
+    public Set<Entity> getSet(){
+        return userGroupSet;
     }
     @Override
     public String getID(){
@@ -29,8 +39,8 @@ public class Group implements Entity, UserGroup {
     public void Display(DefaultMutableTreeNode node){
         DefaultMutableTreeNode group = new DefaultMutableTreeNode(this);
         node.add(group);
-        for (User user: userSet){
-            user.Display(group);
+        for (Entity entity: userGroupSet){
+            entity.Display(group);
         }
     }
     @Override

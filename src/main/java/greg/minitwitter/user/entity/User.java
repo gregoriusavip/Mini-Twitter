@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class User implements Entity, UserGroup {
     private final String userID;
-    private String groupID;
+    private Group group;
     private Set<String> followers;
     private Set<String> following;
 
@@ -16,18 +16,11 @@ public class User implements Entity, UserGroup {
         implement news
         add news variable
     */
-    public User(String userID, String groupID){
+    public User(String userID, Group group){
         this.userID = userID;
-        this.groupID = groupID;
+        this.group = group;
         followers = new HashSet<>();
         following = new HashSet<>();
-    }
-    public boolean setGroupID(String groupID){
-        if (this.groupID.equals("root")) {
-            this.groupID = groupID;
-            return true;
-        }
-        return false;
     }
     public boolean addFollowers(String followerID){
         if (!followers.contains(followerID)){
@@ -42,6 +35,9 @@ public class User implements Entity, UserGroup {
             return true;
         }
         return false;
+    }
+    public Group getGroup(){
+        return group;
     }
     @Override
     public String getID(){
