@@ -28,7 +28,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="4a11d" class="javax.swing.JTree" binding="tree1" custom-create="true" default-binding="true">
+              <component id="4a11d" class="javax.swing.JTree" binding="UserGroupTree" custom-create="true">
                 <constraints/>
                 <properties/>
                 <clientProperties>
@@ -59,14 +59,16 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="6e52a" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="6e52a" class="javax.swing.JTextField" binding="addUserTextField">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
                     <preferred-size width="250" height="25"/>
                     <maximum-size width="250" height="25"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="user id"/>
+                </properties>
               </component>
               <vspacer id="294d9">
                 <constraints>
@@ -84,14 +86,16 @@
                   <text value="Add User"/>
                 </properties>
               </component>
-              <component id="a7b03" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="a7b03" class="javax.swing.JTextField" binding="addGroupTextField">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
                     <preferred-size width="250" height="25"/>
                     <maximum-size width="250" height="25"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="group id"/>
+                </properties>
               </component>
               <component id="32805" class="javax.swing.JButton" binding="addGroupButton" default-binding="true">
                 <constraints>

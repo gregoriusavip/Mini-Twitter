@@ -10,10 +10,10 @@ import javax.swing.tree.TreeSelectionModel;
 
 public class AdminPage extends JFrame{
     private JPanel panel1;
-    private JTree tree1;
+    private JTree UserGroupTree;
     private JScrollPane TreePanel;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField addUserTextField;
+    private JTextField addGroupTextField;
     private JButton addUserButton;
     private JButton addGroupButton;
     private JButton showUserTotalButton;
@@ -27,7 +27,7 @@ public class AdminPage extends JFrame{
     private JPanel MainPanel;
     private JLabel ControlLabel;
     private final AdminHandler admin;
-    private final DefaultTreeModel treeModel = (DefaultTreeModel)tree1.getModel();
+    private final DefaultTreeModel treeModel = (DefaultTreeModel) UserGroupTree.getModel();
     private final DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
     public AdminPage() {
         // Set the Admin panel window
@@ -43,9 +43,9 @@ public class AdminPage extends JFrame{
         updateButtonState();
 
         // Set tree to listen for selection
-        tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        tree1.addTreeSelectionListener(e -> {
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+        UserGroupTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        UserGroupTree.addTreeSelectionListener(e -> {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserGroupTree.getLastSelectedPathComponent();
             if (node == null)
                 return;
 
@@ -54,12 +54,12 @@ public class AdminPage extends JFrame{
         });
 
         addUserButton.addActionListener(e -> {
-            if(textField1.getText().compareTo("") != 0)
+            if(addUserTextField.getText().compareTo("") != 0)
                 addUser();
         });
 
         addGroupButton.addActionListener(e -> {
-            if(textField2.getText().compareTo("") != 0)
+            if(addGroupTextField.getText().compareTo("") != 0)
                 addGroup();
         });
 
@@ -79,10 +79,10 @@ public class AdminPage extends JFrame{
     }
 
     private void addUser(){
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserGroupTree.getLastSelectedPathComponent();
         Object nodeInfo = node.getUserObject();
-        if(admin.addUser(textField1.getText(), (Group) nodeInfo)) {
-            textField1.setText("");
+        if(admin.addUser(addUserTextField.getText(), (Group) nodeInfo)) {
+            addUserTextField.setText("");
             updateButtonState();
             Display();
         }
@@ -99,10 +99,10 @@ public class AdminPage extends JFrame{
         textStatisticsPane.setText(result);
     }
     private void addGroup(){
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserGroupTree.getLastSelectedPathComponent();
         Object nodeInfo = node.getUserObject();
-        if(admin.addGroup(textField2.getText(), (Group) nodeInfo)) {
-            textField2.setText("");
+        if(admin.addGroup(addGroupTextField.getText(), (Group) nodeInfo)) {
+            addGroupTextField.setText("");
             updateButtonState();
             Display();
         }
@@ -118,6 +118,6 @@ public class AdminPage extends JFrame{
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(rootGroup);
         DefaultTreeModel treeModel = new DefaultTreeModel(root);
         treeModel.setAsksAllowsChildren(true);
-        tree1 = new JTree(treeModel);
+        UserGroupTree = new JTree(treeModel);
     }
 }
