@@ -1,6 +1,6 @@
 package greg.minitwitter.GUI;
 
-import greg.minitwitter.admin.AdminView;
+import greg.minitwitter.admin.AdminHandler;
 import greg.minitwitter.user.entity.Group;
 
 import javax.swing.*;
@@ -16,13 +16,14 @@ public class AdminPage extends JFrame{
     private JTextField textField2;
     private JButton addUserButton;
     private JButton addGroupButton;
-    private JButton stat1Button1;
+    private JButton showUserTotalButton;
     private JButton stat2Button;
     private JButton stat3Button;
     private JButton stat4Button;
     private JButton switchToUserViewButton;
     private JLabel userGroupListLabel;
-    private final AdminView view;
+    private JTextPane textStatisticsPane;
+    private final AdminHandler admin;
     private final DefaultTreeModel treeModel = (DefaultTreeModel)tree1.getModel();
     private final DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
     public AdminPage() {
@@ -33,7 +34,7 @@ public class AdminPage extends JFrame{
         setVisible(true);
 
         // Initialize AdminView
-        view = AdminView.getInstance();
+        admin = AdminHandler.getInstance();
 
         updateButtonState();
 
@@ -57,30 +58,37 @@ public class AdminPage extends JFrame{
             if(textField2.getText().compareTo("") != 0)
                 addGroup();
         });
+
+        showUserTotalButton.addActionListener(e -> {
+            getUserTotal();
+        });
     }
 
     private void Display(){
         root.removeAllChildren();
-        view.Display((Group) root.getUserObject(), root);
+        admin.Display((Group) root.getUserObject(), root);
         treeModel.reload();
     }
 
     private void addUser(){
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
         Object nodeInfo = node.getUserObject();
-        if(view.addUser(textField1.getText(), (Group) nodeInfo)) {
+        if(admin.addUser(textField1.getText(), (Group) nodeInfo)) {
             textField1.setText("");
             updateButtonState();
             Display();
         }
     }
 
-    //TODO: maybe overload addUser for if a group that isn't root is clicked
-
+    private void getUserTotal(){
+        String result = "User Total: ";
+        result += admin.getTotalUser((Group) root.getUserObject()).toString();
+        textStatisticsPane.setText(result);
+    }
     private void addGroup(){
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
         Object nodeInfo = node.getUserObject();
-        if(view.addGroup(textField2.getText(), (Group) nodeInfo)) {
+        if(admin.addGroup(textField2.getText(), (Group) nodeInfo)) {
             textField2.setText("");
             updateButtonState();
             Display();
