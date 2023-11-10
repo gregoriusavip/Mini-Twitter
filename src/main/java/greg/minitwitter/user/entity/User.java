@@ -1,4 +1,5 @@
 package greg.minitwitter.user.entity;
+import greg.minitwitter.user.entity.visitor.EntityVisitor;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -36,14 +37,20 @@ public class User implements Entity {
         }
         return false;
     }
+    public int getTotalUser(){
+        return 1;
+    }
     public Group getGroup(){
         return group;
+    }
+    @Override
+    public int accept(EntityVisitor visitor){
+        return visitor.visitUser(this);
     }
     @Override
     public String getID(){
         return userID;
     }
-
     @Override
     public void Display(DefaultMutableTreeNode node){
         node.add(new DefaultMutableTreeNode(this, false));
