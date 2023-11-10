@@ -11,12 +11,10 @@ import java.util.Set;
 public class Group implements Entity {
     private final String groupID;
     private final Group group;
-    private int totalGroup;
     private final Set<Entity> userGroupSet;
     public Group(String groupID, Group parentGroup){
         this.groupID = groupID;
         this.group = parentGroup;
-        totalGroup = 0;
         userGroupSet = new HashSet<>();
     }
     public boolean addUser(User user) {
@@ -25,7 +23,6 @@ public class Group implements Entity {
     }
     public boolean addGroup(Group group){
         userGroupSet.add(group);
-        totalGroup += 1;
         return true;
     }
     public Group getGroup(){
@@ -35,7 +32,7 @@ public class Group implements Entity {
         return userGroupSet;
     }
     public int getTotalGroup(){
-        return totalGroup;
+        return 1;
     }
     @Override
     public int accept(EntityVisitor visitor){

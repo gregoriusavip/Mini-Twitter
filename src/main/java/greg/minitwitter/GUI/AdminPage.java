@@ -17,7 +17,7 @@ public class AdminPage extends JFrame{
     private JButton addUserButton;
     private JButton addGroupButton;
     private JButton showUserTotalButton;
-    private JButton stat2Button;
+    private JButton showGroupTotalButton;
     private JButton stat3Button;
     private JButton stat4Button;
     private JButton switchToUserViewButton;
@@ -62,6 +62,10 @@ public class AdminPage extends JFrame{
         showUserTotalButton.addActionListener(e -> {
             getUserTotal();
         });
+
+        showGroupTotalButton.addActionListener(e -> {
+            getGroupTotal();
+        });
     }
 
     private void Display(){
@@ -83,6 +87,11 @@ public class AdminPage extends JFrame{
     private void getUserTotal(){
         String result = "User Total: ";
         result += admin.getTotalUser((Group) root.getUserObject()).toString();
+        textStatisticsPane.setText(result);
+    }
+    private void getGroupTotal(){
+        String result = "Group Total: ";
+        result += admin.getTotalGroup((Group) root.getUserObject()).toString();
         textStatisticsPane.setText(result);
     }
     private void addGroup(){

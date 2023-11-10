@@ -3,6 +3,7 @@ package greg.minitwitter.admin;
 import greg.minitwitter.user.entity.Entity;
 import greg.minitwitter.user.entity.Group;
 import greg.minitwitter.user.entity.User;
+import greg.minitwitter.user.entity.visitor.CountGroupVisitor;
 import greg.minitwitter.user.entity.visitor.CountUserVisitor;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -37,6 +38,9 @@ public class AdminHandler {
     }
     public Integer getTotalUser(Group root){
         return root.accept(new CountUserVisitor());
+    }
+    public Integer getTotalGroup(Group root){
+        return root.accept(new CountGroupVisitor());
     }
     public boolean addGroup(String groupID, Group group){
         Group newGroup = new Group(groupID, group);
