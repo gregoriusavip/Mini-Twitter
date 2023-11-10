@@ -1,164 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="greg.minitwitter.GUI.AdminPage">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="7" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="812" height="498"/>
+      <xy x="20" y="20" width="1386" height="642"/>
     </constraints>
     <properties/>
     <border type="bevel-lowered"/>
     <children>
-      <scrollpane id="f1793" binding="treePane">
+      <grid id="a03cb" binding="MainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="6" col-span="1" vsize-policy="1" hsize-policy="7" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="350" height="720"/>
-            <maximum-size width="350" height="720"/>
-          </grid>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties>
-          <enabled value="true"/>
-        </properties>
+        <properties/>
         <border type="none"/>
         <children>
-          <component id="4a11d" class="javax.swing.JTree" binding="tree1" custom-create="true" default-binding="true">
-            <constraints/>
+          <scrollpane id="f1793" binding="TreePanel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="7" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="350" height="720"/>
+                <maximum-size width="350" height="720"/>
+              </grid>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="4a11d" class="javax.swing.JTree" binding="tree1" custom-create="true" default-binding="true">
+                <constraints/>
+                <properties/>
+                <clientProperties>
+                  <JTree.lineStyle class="java.lang.String" value=""/>
+                </clientProperties>
+              </component>
+            </children>
+          </scrollpane>
+          <component id="4545" class="javax.swing.JLabel" binding="TreeLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="214" height="17"/>
+                <maximum-size width="100" height="17"/>
+              </grid>
+            </constraints>
+            <properties>
+              <labelFor value="f1793"/>
+              <text value="User Group List"/>
+            </properties>
+          </component>
+          <grid id="90ad9" binding="ControlPanel" layout-manager="GridLayoutManager" row-count="10" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                <maximum-size width="610" height="720"/>
+              </grid>
+            </constraints>
             <properties/>
-            <clientProperties>
-              <JTree.lineStyle class="java.lang.String" value=""/>
-            </clientProperties>
+            <border type="none"/>
+            <children>
+              <component id="6e52a" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <vspacer id="294d9">
+                <constraints>
+                  <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="ac385" class="javax.swing.JButton" binding="addUserButton">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Add User"/>
+                </properties>
+              </component>
+              <component id="a7b03" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="32805" class="javax.swing.JButton" binding="addGroupButton" default-binding="true">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Add Group"/>
+                </properties>
+              </component>
+              <component id="12f55" class="javax.swing.JButton" binding="switchToUserViewButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="200" height="25"/>
+                    <maximum-size width="200" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Switch to user view"/>
+                </properties>
+              </component>
+              <hspacer id="f6de0">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="abe4a" class="javax.swing.JTextPane" binding="textStatisticsPane">
+                <constraints>
+                  <grid row="6" column="0" row-span="2" col-span="3" vsize-policy="6" hsize-policy="6" anchor="2" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="250"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="f7b9f" class="javax.swing.JButton" binding="showUserTotalButton" default-binding="true">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Show User Total"/>
+                </properties>
+              </component>
+              <component id="6cd6" class="javax.swing.JButton" binding="showGroupTotalButton" default-binding="true">
+                <constraints>
+                  <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Show Group Total"/>
+                </properties>
+              </component>
+              <component id="fcb76" class="javax.swing.JButton" binding="stat3Button" default-binding="true">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Stat3"/>
+                </properties>
+              </component>
+              <component id="51dc9" class="javax.swing.JButton" binding="stat4Button" default-binding="true">
+                <constraints>
+                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="250" height="25"/>
+                    <maximum-size width="250" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Stat4"/>
+                </properties>
+              </component>
+              <vspacer id="48a52">
+                <constraints>
+                  <grid row="8" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <hspacer id="a6425">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="6ae08">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="a1715" class="javax.swing.JSeparator">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
+          </grid>
+          <component id="e87c2" class="javax.swing.JLabel" binding="ControlLabel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Control Panel"/>
+            </properties>
+          </component>
+          <component id="b424c" class="javax.swing.JSeparator">
+            <constraints>
+              <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <orientation value="1"/>
+            </properties>
           </component>
         </children>
-      </scrollpane>
-      <component id="4545" class="javax.swing.JLabel" binding="userGroupListLabel">
+      </grid>
+      <vspacer id="35e40">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="214" height="17"/>
-            <maximum-size width="100" height="17"/>
-          </grid>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties>
-          <labelFor value="f1793"/>
-          <text value="User Group List"/>
-        </properties>
-      </component>
-      <component id="e87c2" class="javax.swing.JLabel">
+      </vspacer>
+      <component id="afbaf" class="javax.swing.JSeparator">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Control Panel"/>
-        </properties>
-      </component>
-      <component id="6e52a" class="javax.swing.JTextField" binding="textField1" default-binding="true">
-        <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="ac385" class="javax.swing.JButton" binding="addUserButton">
-        <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Add User"/>
-        </properties>
-      </component>
-      <component id="32805" class="javax.swing.JButton" binding="addGroupButton" default-binding="true">
-        <constraints>
-          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Add Group"/>
-        </properties>
-      </component>
-      <component id="f7b9f" class="javax.swing.JButton" binding="showUserTotalButton" default-binding="true">
-        <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Show User Total"/>
-        </properties>
-      </component>
-      <component id="fcb76" class="javax.swing.JButton" binding="stat3Button" default-binding="true">
-        <constraints>
-          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Stat3"/>
-        </properties>
-      </component>
-      <component id="51dc9" class="javax.swing.JButton" binding="stat4Button" default-binding="true">
-        <constraints>
-          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Stat4"/>
-        </properties>
-      </component>
-      <component id="a7b03" class="javax.swing.JTextField" binding="textField2" default-binding="true">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="12f55" class="javax.swing.JButton" binding="switchToUserViewButton" default-binding="true">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="200" height="25"/>
-            <maximum-size width="200" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Switch to user view"/>
-        </properties>
-      </component>
-      <component id="6cd6" class="javax.swing.JButton" binding="showGroupTotalButton" default-binding="true">
-        <constraints>
-          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
-            <preferred-size width="250" height="25"/>
-            <maximum-size width="250" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Show Group Total"/>
-        </properties>
-      </component>
-      <component id="3b263" class="javax.swing.JSeparator">
-        <constraints>
-          <grid row="0" column="1" row-span="7" col-span="1" vsize-policy="6" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <orientation value="1"/>
         </properties>
-      </component>
-      <component id="abe4a" class="javax.swing.JTextPane" binding="textStatisticsPane">
-        <constraints>
-          <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="2" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="100" height="250"/>
-          </grid>
-        </constraints>
-        <properties/>
       </component>
     </children>
   </grid>

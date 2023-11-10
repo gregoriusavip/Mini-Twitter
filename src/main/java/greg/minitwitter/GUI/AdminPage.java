@@ -11,7 +11,7 @@ import javax.swing.tree.TreeSelectionModel;
 public class AdminPage extends JFrame{
     private JPanel panel1;
     private JTree tree1;
-    private JScrollPane treePane;
+    private JScrollPane TreePanel;
     private JTextField textField1;
     private JTextField textField2;
     private JButton addUserButton;
@@ -21,8 +21,11 @@ public class AdminPage extends JFrame{
     private JButton stat3Button;
     private JButton stat4Button;
     private JButton switchToUserViewButton;
-    private JLabel userGroupListLabel;
+    private JLabel TreeLabel;
     private JTextPane textStatisticsPane;
+    private JPanel ControlPanel;
+    private JPanel MainPanel;
+    private JLabel ControlLabel;
     private final AdminHandler admin;
     private final DefaultTreeModel treeModel = (DefaultTreeModel)tree1.getModel();
     private final DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
