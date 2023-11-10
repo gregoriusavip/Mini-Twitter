@@ -1,6 +1,7 @@
 package greg.minitwitter.GUI;
 
 import greg.minitwitter.admin.AdminHandler;
+import greg.minitwitter.entity.Entity;
 import greg.minitwitter.entity.Group;
 
 import javax.swing.*;
@@ -74,7 +75,7 @@ public class AdminPage extends JFrame{
 
     private void Display(){
         root.removeAllChildren();
-        admin.Display((Group) root.getUserObject(), root);
+        admin.Display(root);
         treeModel.reload();
     }
 
@@ -90,12 +91,12 @@ public class AdminPage extends JFrame{
 
     private void getUserTotal(){
         String result = "User Total: ";
-        result += admin.getTotalUser((Group) root.getUserObject()).toString();
+        result += admin.getTotalUser().toString();
         textStatisticsPane.setText(result);
     }
     private void getGroupTotal(){
         String result = "Group Total: ";
-        result += admin.getTotalGroup((Group) root.getUserObject()).toString();
+        result += admin.getTotalGroup().toString();
         textStatisticsPane.setText(result);
     }
     private void addGroup(){
@@ -114,8 +115,7 @@ public class AdminPage extends JFrame{
     }
 
     private void createUIComponents() {
-        Group rootGroup = new Group("Root", null);
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(rootGroup);
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(AdminHandler.getRoot());
         DefaultTreeModel treeModel = new DefaultTreeModel(root);
         treeModel.setAsksAllowsChildren(true);
         UserGroupTree = new JTree(treeModel);

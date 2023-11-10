@@ -17,7 +17,7 @@ public class Group implements Entity {
         this.parentGroup = parentGroup;
         userGroupSet = new HashSet<>();
     }
-    public boolean addUser(User user) {
+    boolean addUser(User user) {
         if(!userGroupSet.contains(user) && user.getID().compareTo(groupID) != 0) {
             userGroupSet.add(user);
             return true;
@@ -25,14 +25,14 @@ public class Group implements Entity {
 
         return false;
     }
-    public boolean addGroup(Group group){
+    boolean addGroup(Group group){
         if(!userGroupSet.contains(group) && !group.equals(this)) {
             userGroupSet.add(group);
             return true;
         }
         return false;
     }
-    public Group getParentGroup(){
+    Group getParentGroup(){
         return parentGroup;
     }
     public Set<Entity> getSet(){
