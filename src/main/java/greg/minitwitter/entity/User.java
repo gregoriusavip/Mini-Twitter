@@ -1,5 +1,5 @@
-package greg.minitwitter.user.entity;
-import greg.minitwitter.user.entity.visitor.EntityVisitor;
+package greg.minitwitter.entity;
+import greg.minitwitter.entity.visitor.EntityVisitor;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

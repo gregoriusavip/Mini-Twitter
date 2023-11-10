@@ -1,10 +1,10 @@
 package greg.minitwitter.admin;
 
-import greg.minitwitter.user.entity.Entity;
-import greg.minitwitter.user.entity.Group;
-import greg.minitwitter.user.entity.User;
-import greg.minitwitter.user.entity.visitor.CountGroupVisitor;
-import greg.minitwitter.user.entity.visitor.CountUserVisitor;
+import greg.minitwitter.entity.Entity;
+import greg.minitwitter.entity.Group;
+import greg.minitwitter.entity.User;
+import greg.minitwitter.entity.visitor.CountGroupVisitor;
+import greg.minitwitter.entity.visitor.CountUserVisitor;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashSet;

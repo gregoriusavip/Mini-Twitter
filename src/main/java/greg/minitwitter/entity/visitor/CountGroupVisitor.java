@@ -1,8 +1,8 @@
-package greg.minitwitter.user.entity.visitor;
+package greg.minitwitter.entity.visitor;
 
-import greg.minitwitter.user.entity.Entity;
-import greg.minitwitter.user.entity.Group;
-import greg.minitwitter.user.entity.User;
+import greg.minitwitter.entity.User;
+import greg.minitwitter.entity.Entity;
+import greg.minitwitter.entity.Group;
 
 public class CountGroupVisitor implements EntityVisitor{
     @Override

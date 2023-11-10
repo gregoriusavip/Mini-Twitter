@@ -1,7 +1,7 @@
 package greg.minitwitter.GUI;
 
 import greg.minitwitter.admin.AdminHandler;
-import greg.minitwitter.user.entity.Group;
+import greg.minitwitter.entity.Group;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
