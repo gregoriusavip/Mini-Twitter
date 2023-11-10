@@ -10,23 +10,30 @@ import java.util.Set;
 
 public class Group implements Entity {
     private final String groupID;
-    private final Group group;
+    private final Group parentGroup;
     private final Set<Entity> userGroupSet;
     public Group(String groupID, Group parentGroup){
         this.groupID = groupID;
-        this.group = parentGroup;
+        this.parentGroup = parentGroup;
         userGroupSet = new HashSet<>();
     }
     public boolean addUser(User user) {
-        userGroupSet.add(user);
-        return true;
+        if(!userGroupSet.contains(user) && user.getID().compareTo(groupID) != 0) {
+            userGroupSet.add(user);
+            return true;
+        }
+
+        return false;
     }
     public boolean addGroup(Group group){
-        userGroupSet.add(group);
-        return true;
+        if(!userGroupSet.contains(group) && !group.equals(this)) {
+            userGroupSet.add(group);
+            return true;
+        }
+        return false;
     }
-    public Group getGroup(){
-        return group;
+    public Group getParentGroup(){
+        return parentGroup;
     }
     public Set<Entity> getSet(){
         return userGroupSet;

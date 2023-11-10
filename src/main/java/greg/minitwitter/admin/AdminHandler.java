@@ -47,7 +47,7 @@ public class AdminHandler {
         if (!entities.contains(newGroup.getID())) {
             System.out.println("Group not found");   //debug
             entities.add(newGroup.getID());
-            return newGroup.getGroup().addGroup(newGroup);
+            return newGroup.getParentGroup().addGroup(newGroup);
         }
         return false;
     }
