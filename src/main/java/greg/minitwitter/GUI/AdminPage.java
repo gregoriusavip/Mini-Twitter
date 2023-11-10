@@ -35,6 +35,7 @@ public class AdminPage extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(960, 720);
         setVisible(true);
+        setTitle("Admin Page");
 
         // Initialize AdminView
         admin = AdminHandler.getInstance();
