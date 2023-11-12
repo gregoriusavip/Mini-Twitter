@@ -29,24 +29,24 @@ public class User extends UserSubject implements Entity, UserObserver {
         newsFeed = new LinkedList<>();
         formatter = DateTimeFormatter.ofPattern("HH:mm");
     }
-    private boolean addFollowers(String userID, User user){
-        if (user == this){
+    private boolean addFollowers(String userID, User newFollower){
+        if (newFollower == this){
             System.out.println("Cannot follow self");
             return false;
         }
         if (!followers.contains(userID)){
             followers.add(userID);
-            this.attach(user);
+            this.attach(newFollower);
             return true;
         }
         return false;
     }
-    public boolean addFollowing(String userID, User user){
-        if (user == this){
+    public boolean addFollowing(String userID, User userToFollow){
+        if (userToFollow == this){
             System.out.println("Cannot follow self");
             return false;
         }
-        if (!following.contains(userID) && user.addFollowers(this.userID, this)){
+        if (!following.contains(userID) && userToFollow.addFollowers(this.userID, this)){
             following.add(userID);
             System.out.println("Followed user");
             return true;
@@ -57,20 +57,25 @@ public class User extends UserSubject implements Entity, UserObserver {
     public void postTweet(String tweet){
         LocalTime currentTime = LocalTime.now();
         newsFeed.addFirst("@" + userID + " (" + currentTime.format(formatter) + ") " + ":" + tweet);
-        notifyObservers();
+        notifyFollowers();
+        notifyPanels();
     }
     public List<String> getNewsFeed(){
         return newsFeed;
     }
+    public String getNewestTweet() { return newsFeed.getFirst(); }
+    public Set<String> getFollowing() { return following; }
     public int getTotalUser(){
         return 1;
     }
     public Group getGroup(){
         return group;
     }
+    public int getTotalMessages() { return newsFeed.size(); }
     @Override
     public void update(UserSubject userSubject){
         this.newsFeed.addFirst(((User) userSubject).getNewsFeed().getFirst());
+        notifyPanels();
     }
     @Override
     public int accept(EntityVisitor visitor){
