@@ -22,7 +22,6 @@ public class Group implements Entity {
             userGroupSet.add(user);
             return true;
         }
-
         return false;
     }
     boolean addGroup(Group group){
@@ -31,6 +30,17 @@ public class Group implements Entity {
             return true;
         }
         return false;
+    }
+    User findUser(String userID){
+        User user = null;
+        for (Entity entity : userGroupSet){
+            if (entity instanceof User && userID.compareTo(entity.getID()) == 0)
+                return (User) entity;
+            else if (entity instanceof Group){
+                user = ((Group) entity).findUser(userID);
+            }
+        }
+        return user;
     }
     Group getParentGroup(){
         return parentGroup;
