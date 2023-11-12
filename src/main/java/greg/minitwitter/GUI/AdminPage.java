@@ -1,8 +1,10 @@
 package greg.minitwitter.GUI;
 
 import greg.minitwitter.admin.AdminHandler;
-import greg.minitwitter.entity.Entity;
 import greg.minitwitter.entity.Group;
+import greg.minitwitter.entity.Root;
+import greg.minitwitter.entity.User;
+import greg.minitwitter.user.UserHandler;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -10,7 +12,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
 public class AdminPage extends JFrame{
-    private JPanel panel1;
+    private JPanel AdminPanel;
     private JTree UserGroupTree;
     private JScrollPane TreePanel;
     private JTextField addUserTextField;
@@ -32,16 +34,17 @@ public class AdminPage extends JFrame{
     private final DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
     public AdminPage() {
         // Set the Admin panel window
-        setContentPane(panel1);
+        setContentPane(AdminPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(960, 720);
         setVisible(true);
         setTitle("Admin Page");
 
-        // Initialize AdminView
+        // Initial states
         admin = AdminHandler.getInstance();
-
-        updateButtonState();
+        UserHandler.getInstance().setRoot((Root) root.getUserObject());
+        updateAddButtonState();
+        switchToUserViewButton.setEnabled(false);
 
         // Set tree to listen for selection
         UserGroupTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -52,6 +55,7 @@ public class AdminPage extends JFrame{
 
             addUserButton.setEnabled(node.isRoot() || node.getAllowsChildren());
             addGroupButton.setEnabled(node.isRoot() || node.getAllowsChildren());
+            switchToUserViewButton.setEnabled(!node.getAllowsChildren());
         });
 
         addUserButton.addActionListener(e -> {
@@ -71,6 +75,11 @@ public class AdminPage extends JFrame{
         showGroupTotalButton.addActionListener(e -> {
             getGroupTotal();
         });
+        switchToUserViewButton.addActionListener((e -> {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserGroupTree.getLastSelectedPathComponent();
+            Object nodeInfo = node.getUserObject();
+            new UserPage((User)nodeInfo);
+        }));
     }
 
     private void Display(){
@@ -78,17 +87,15 @@ public class AdminPage extends JFrame{
         admin.Display(root);
         treeModel.reload();
     }
-
     private void addUser(){
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserGroupTree.getLastSelectedPathComponent();
         Object nodeInfo = node.getUserObject();
         if(admin.addUser(addUserTextField.getText(), (Group) nodeInfo)) {
             addUserTextField.setText("");
-            updateButtonState();
+            updateAddButtonState();
             Display();
         }
     }
-
     private void getUserTotal(){
         String result = "User Total: ";
         result += admin.getTotalUser().toString();
@@ -104,16 +111,14 @@ public class AdminPage extends JFrame{
         Object nodeInfo = node.getUserObject();
         if(admin.addGroup(addGroupTextField.getText(), (Group) nodeInfo)) {
             addGroupTextField.setText("");
-            updateButtonState();
+            updateAddButtonState();
             Display();
         }
     }
-
-    private void updateButtonState(){
+    private void updateAddButtonState(){
         addUserButton.setEnabled(false);
         addGroupButton.setEnabled(false);
     }
-
     private void createUIComponents() {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(AdminHandler.getRoot());
         DefaultTreeModel treeModel = new DefaultTreeModel(root);
