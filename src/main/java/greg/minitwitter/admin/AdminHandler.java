@@ -15,7 +15,6 @@ public class AdminHandler {
 
     private AdminHandler() {
     }
-
     public static AdminHandler getInstance(){
         if (instance == null){
             synchronized (AdminHandler.class) {
