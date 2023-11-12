@@ -28,6 +28,9 @@ public class Root extends Group{
         }
         return false;
     }
+    public User findUser(String userID){
+        return super.findUser(userID);
+    }
 
     @Override
     public Set<Entity> getSet(){
