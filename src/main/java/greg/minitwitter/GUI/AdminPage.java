@@ -21,8 +21,8 @@ public class AdminPage extends JFrame{
     private JButton addGroupButton;
     private JButton showUserTotalButton;
     private JButton showGroupTotalButton;
-    private JButton stat3Button;
-    private JButton stat4Button;
+    private JButton showMessagesTotalButton;
+    private JButton showPositivePercentageButton;
     private JButton switchToUserViewButton;
     private JLabel TreeLabel;
     private JTextPane textStatisticsPane;
@@ -71,9 +71,14 @@ public class AdminPage extends JFrame{
         showUserTotalButton.addActionListener(e -> {
             getUserTotal();
         });
-
         showGroupTotalButton.addActionListener(e -> {
             getGroupTotal();
+        });
+        showMessagesTotalButton.addActionListener(e -> {
+            getTotalMessages();
+        });
+        showPositivePercentageButton.addActionListener(e -> {
+            getPositivePercentage();
         });
         switchToUserViewButton.addActionListener((e -> {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserGroupTree.getLastSelectedPathComponent();
@@ -118,6 +123,13 @@ public class AdminPage extends JFrame{
     private void updateAddButtonState(){
         addUserButton.setEnabled(false);
         addGroupButton.setEnabled(false);
+    }
+    private void getTotalMessages(){
+        textStatisticsPane.setText("Total Messages: " + admin.getTotalMessages().toString());
+    }
+    private void getPositivePercentage(){
+        textStatisticsPane.setText("Total Positive Messages in Percentage: "
+                + admin.getPositiveMessagePercentage().toString() + "%");
     }
     private void createUIComponents() {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(AdminHandler.getRoot());

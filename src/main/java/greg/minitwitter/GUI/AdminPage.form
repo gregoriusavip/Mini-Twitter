@@ -154,7 +154,7 @@
                   <text value="Show Group Total"/>
                 </properties>
               </component>
-              <component id="fcb76" class="javax.swing.JButton" binding="stat3Button" default-binding="true">
+              <component id="fcb76" class="javax.swing.JButton" binding="showMessagesTotalButton" default-binding="true">
                 <constraints>
                   <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
                     <preferred-size width="250" height="25"/>
@@ -162,10 +162,10 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="Stat3"/>
+                  <text value="Show Messages Total"/>
                 </properties>
               </component>
-              <component id="51dc9" class="javax.swing.JButton" binding="stat4Button" default-binding="true">
+              <component id="51dc9" class="javax.swing.JButton" binding="showPositivePercentageButton" default-binding="true">
                 <constraints>
                   <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
                     <preferred-size width="250" height="25"/>
@@ -173,7 +173,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="Stat4"/>
+                  <text value="Show Positive Percentage"/>
                 </properties>
               </component>
               <vspacer id="48a52">
