@@ -38,6 +38,8 @@ public class Group implements Entity {
                 return (User) entity;
             else if (entity instanceof Group){
                 user = ((Group) entity).findUser(userID);
+                if (user != null)
+                    return user;
             }
         }
         return user;
