@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.time.LocalTime;
+import java.util.regex.*;
 
 public class User extends UserSubject implements Entity, UserObserver {
     private final String userID;
@@ -20,6 +21,11 @@ public class User extends UserSubject implements Entity, UserObserver {
     private final Set<String> followers;
     private final List<String> newsFeed;
     private final DateTimeFormatter formatter;
+    private final String regex = "(?i)\\bgood\\b|\\bgreat\\b|\\bexcellent\\b";
+    private final Pattern pattern = Pattern.compile(regex);
+    private Matcher matcher;
+    private int totalPositiveMessage;
+    private String newestFollowing;
 
     public User(String userID, Group group){
         this.userID = userID;
@@ -48,6 +54,7 @@ public class User extends UserSubject implements Entity, UserObserver {
         }
         if (!following.contains(userID) && userToFollow.addFollowers(this.userID, this)){
             following.add(userID);
+            newestFollowing = userID;
             System.out.println("Followed user");
             return true;
         }
@@ -55,16 +62,20 @@ public class User extends UserSubject implements Entity, UserObserver {
         return false;
     }
     public void postTweet(String tweet){
+        matcher = pattern.matcher(tweet);
+        if (matcher.find())
+            totalPositiveMessage += 1;
         LocalTime currentTime = LocalTime.now();
         newsFeed.addFirst("@" + userID + " (" + currentTime.format(formatter) + ") " + ":" + tweet);
         notifyFollowers();
-        notifyPanels();
+        notifyPanelTweet();
     }
     public List<String> getNewsFeed(){
         return newsFeed;
     }
     public String getNewestTweet() { return newsFeed.getFirst(); }
     public Set<String> getFollowing() { return following; }
+    public String getNewestFollowing() { return newestFollowing; }
     public int getTotalUser(){
         return 1;
     }
@@ -72,10 +83,15 @@ public class User extends UserSubject implements Entity, UserObserver {
         return group;
     }
     public int getTotalMessages() { return newsFeed.size(); }
+    public int getTotalPositiveMessage() { return totalPositiveMessage; }
     @Override
     public void update(UserSubject userSubject){
-        this.newsFeed.addFirst(((User) userSubject).getNewsFeed().getFirst());
-        notifyPanels();
+        String tweet = ((User) userSubject).getNewsFeed().getFirst();
+        matcher = pattern.matcher(tweet);
+        if (matcher.find())
+            totalPositiveMessage += 1;
+        this.newsFeed.addFirst(tweet);
+        notifyPanelTweet();
     }
     @Override
     public int accept(EntityVisitor visitor){
