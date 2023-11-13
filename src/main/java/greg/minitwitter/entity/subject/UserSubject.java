@@ -27,7 +27,7 @@ public abstract class UserSubject {
             user.update(this);
         }
     }
-    public void notifyPanels() {
+    public void notifyPanelTweet() {
         for(UserObserver panel : panelList){
             panel.update(this);
         }
