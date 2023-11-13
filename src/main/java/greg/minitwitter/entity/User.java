@@ -1,4 +1,5 @@
 package greg.minitwitter.entity;
+import greg.minitwitter.entity.observer.Info;
 import greg.minitwitter.entity.observer.UserObserver;
 import greg.minitwitter.entity.subject.UserSubject;
 import greg.minitwitter.entity.visitor.EntityVisitor;
@@ -55,6 +56,7 @@ public class User extends UserSubject implements Entity, UserObserver {
         if (!following.contains(userID) && userToFollow.addFollowers(this.userID, this)){
             following.add(userID);
             newestFollowing = userID;
+            notifyPanelNewFollowing();
             System.out.println("Followed user");
             return true;
         }
@@ -85,7 +87,11 @@ public class User extends UserSubject implements Entity, UserObserver {
     public int getTotalMessages() { return newsFeed.size(); }
     public int getTotalPositiveMessage() { return totalPositiveMessage; }
     @Override
-    public void update(UserSubject userSubject){
+    public void update(UserSubject userSubject, Info info){
+        if(info != Info.NEWTWEET){
+            System.out.println("A Fatal Error Occurred");
+            return;
+        }
         String tweet = ((User) userSubject).getNewsFeed().getFirst();
         matcher = pattern.matcher(tweet);
         if (matcher.find())

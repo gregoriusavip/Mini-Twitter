@@ -1,6 +1,7 @@
 package greg.minitwitter.entity.subject;
 
 import greg.minitwitter.entity.User;
+import greg.minitwitter.entity.observer.Info;
 import greg.minitwitter.entity.observer.UserObserver;
 
 import java.util.LinkedList;
@@ -24,12 +25,17 @@ public abstract class UserSubject {
     }
     public void notifyFollowers() {
         for(UserObserver user : followers){
-            user.update(this);
+            user.update(this, Info.NEWTWEET);
         }
     }
     public void notifyPanelTweet() {
         for(UserObserver panel : panelList){
-            panel.update(this);
+            panel.update(this, Info.NEWTWEET);
+        }
+    }
+    public void notifyPanelNewFollowing() {
+        for(UserObserver panel : panelList){
+            panel.update(this, Info.NEWFOLLOWING);
         }
     }
 }

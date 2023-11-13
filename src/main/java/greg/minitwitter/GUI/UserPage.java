@@ -1,6 +1,7 @@
 package greg.minitwitter.GUI;
 
 import greg.minitwitter.entity.User;
+import greg.minitwitter.entity.observer.Info;
 import greg.minitwitter.entity.observer.UserObserver;
 import greg.minitwitter.entity.subject.UserSubject;
 import greg.minitwitter.user.UserHandler;
@@ -66,7 +67,6 @@ public class UserPage extends JFrame implements UserObserver {
     }
     private void follow(User user){
         if(userHandler.addFollowingHandler(user, followUserTextField.getText())){
-            followingUser.setText("* " + followUserTextField.getText() + "\n" + followingUser.getText());
             followUserTextField.setText("");
             return;
         }
@@ -84,7 +84,13 @@ public class UserPage extends JFrame implements UserObserver {
     }
 
     @Override
-    public void update(UserSubject userSubject){
-        timelineTextArea.setText(((User) userSubject).getNewestTweet() + "\n\n" + timelineTextArea.getText());
+    public void update(UserSubject userSubject, Info info){
+        if(info == Info.NEWTWEET) {
+            timelineTextArea.setText(((User) userSubject).getNewestTweet() + "\n\n" + timelineTextArea.getText());
+        }
+        else{
+            String newFollowing = ((User) userSubject).getNewestFollowing();
+            followingUser.setText("* " + newFollowing + "\n" + followingUser.getText());
+        }
     }
 }
