@@ -115,7 +115,7 @@ public class UserPage extends JFrame implements UserObserver {
      */
     @Override
     public void update(UserSubject userSubject, Info info){
-        if(info == Info.NEWTWEET) {
+        if(info == Info.TWEET) {
             timelineTextArea.setText(((User) userSubject).getNewestTweet() + "\n\n" + timelineTextArea.getText());
         }
         else{

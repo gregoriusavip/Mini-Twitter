@@ -184,7 +184,7 @@ public class User extends UserSubject implements Entity, UserObserver {
      */
     @Override
     public void update(UserSubject userSubject, Info info){
-        if(info != Info.NEWTWEET){
+        if(info != Info.TWEET){
             System.out.println("A Fatal Error Occurred");
             return;
         }

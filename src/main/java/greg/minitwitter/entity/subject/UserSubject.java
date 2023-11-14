@@ -25,17 +25,17 @@ public abstract class UserSubject {
     }
     public void notifyFollowers() {
         for(UserObserver user : followers){
-            user.update(this, Info.NEWTWEET);
+            user.update(this, Info.TWEET);
         }
     }
     public void notifyPanelTweet() {
         for(UserObserver panel : panelList){
-            panel.update(this, Info.NEWTWEET);
+            panel.update(this, Info.TWEET);
         }
     }
     public void notifyPanelNewFollowing() {
         for(UserObserver panel : panelList){
-            panel.update(this, Info.NEWFOLLOWING);
+            panel.update(this, Info.FOLLOWING);
         }
     }
 }
