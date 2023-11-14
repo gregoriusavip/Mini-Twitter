@@ -8,7 +8,7 @@ import greg.minitwitter.entity.Group;
  * Class to visit Users and Groups
  * Calculate the total amount of positive messages marked in a User
  */
- class CountPositiveMessage implements EntityVisitor{
+ public class CountPositiveMessage implements EntityVisitor{
     /**
      * Visit a user and get their total messages containing positive words
      * @param user user to visit
