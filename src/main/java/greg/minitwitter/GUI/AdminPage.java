@@ -70,12 +70,16 @@ public class AdminPage extends JFrame{
         addUserButton.addActionListener(e -> {
             if(addUserTextField.getText().compareTo("") != 0)   // ignore case when the inputted userID is empty
                 addUser();
+            else
+                JOptionPane.showMessageDialog(null, "The input field cannot be empty");
         });
 
         // Implement action listener for adding user
         addGroupButton.addActionListener(e -> {
             if(addGroupTextField.getText().compareTo("") != 0)  // ignore case when the inputted groupID is empty
                 addGroup();
+            else
+                JOptionPane.showMessageDialog(null, "The input field cannot be empty");
         });
 
         // Implement action listener for showing the total amount of user registered
@@ -130,6 +134,8 @@ public class AdminPage extends JFrame{
             updateAddButtonState();
             Display();  //reset the tree view with the newly added user node
         }
+        else
+            JOptionPane.showMessageDialog(null, "The input user id is not valid");
     }
 
     /**
@@ -146,6 +152,8 @@ public class AdminPage extends JFrame{
             updateAddButtonState();
             Display();
         }
+        else
+            JOptionPane.showMessageDialog(null, "The input group id is not valid");
     }
 
     /**
