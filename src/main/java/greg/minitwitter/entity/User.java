@@ -16,7 +16,7 @@ import java.util.regex.*;
 
 /**
  * User class that contains data for each user
- * This class utilizes EqualsBuilder and HashCodeBuilder to override default functionality
+ * This class utilizes EqualsBuilder and HashCodeBuilder to override the default functionality
  * ---------------------------------------------------------------------------------------
  * User class will have unique userID, a pointer to a parent group
  * Each user also can follow or being followed by unique users based of the userID

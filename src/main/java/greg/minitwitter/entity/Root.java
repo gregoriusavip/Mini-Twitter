@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * Root is the base group that contains reference for any group and user objects
+ * Root should not have a parent group
  */
 public class Root extends Group{
     private final Set<String> ids;  //set containing all used ids
@@ -13,7 +14,7 @@ public class Root extends Group{
      * Constructor
      */
     public Root() {
-        super("Root", null);
+        super("Root", null);    // created a group object with ID Root and no parent group
         ids = new HashSet<>();
         ids.add("Root");
     }
@@ -42,7 +43,7 @@ public class Root extends Group{
      */
     public boolean addUser(String userID, Group group){
         User user = new User(userID, group);
-        if(!ids.contains(user.getID())){
+        if(!ids.contains(user.getID())){    //check if id has been used before
             ids.add(user.getID());
             return user.getGroup().addUser(user);
         }
