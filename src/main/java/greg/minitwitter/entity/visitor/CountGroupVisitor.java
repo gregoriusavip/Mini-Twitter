@@ -4,13 +4,24 @@ import greg.minitwitter.entity.User;
 import greg.minitwitter.entity.Entity;
 import greg.minitwitter.entity.Group;
 
+/**
+ * Class to visit Groups
+ * Calculate the total amount of subgroups within a group
+ */
 public class CountGroupVisitor implements EntityVisitor{
     @Override
     public int visitUser(User user){
-        // not used
+        // does not need to visit user
         return 0;
     }
 
+    /**
+     * method to visit a group and traverse through its group set
+     * count the total amount of subgroups within this group set
+     * ignore User instances
+     * @param group the group to visit
+     * @return the total amount of subgroups within this group set
+     */
     @Override
     public int visitGroup(Group group) {
         int totalGroup = 0;
