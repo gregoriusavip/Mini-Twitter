@@ -7,4 +7,4 @@ Java Version: openjdk-21
 
 Dependency: org.apache.commons: commons-lang3 version 3.12.0
 
-To use: Make sure you are running java openjdk-21 and run mvn install to get the dependency. Then run Driver.java
+To use: Make sure you are running java openjdk-21 and run mvn install to get the dependency or add the dependency package to the project. Then run Driver.java
