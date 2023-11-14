@@ -53,6 +53,8 @@ public class UserPage extends JFrame implements UserObserver {
             if(followUserTextField.getText().compareTo("") != 0) {
                 follow(user);
             }
+            else
+                JOptionPane.showMessageDialog(null, "The input field cannot be empty");
         });
 
         // Implement action listener for posting a tweet
@@ -61,6 +63,8 @@ public class UserPage extends JFrame implements UserObserver {
                 userHandler.postTweetHandler(user, tweetTextArea.getText());
                 tweetTextArea.setText("");
             }
+            else
+                JOptionPane.showMessageDialog(null, "The input field cannot be empty");
         });
 
         // Upon window closing
@@ -82,9 +86,9 @@ public class UserPage extends JFrame implements UserObserver {
     private void follow(User user){
         if(userHandler.addFollowingHandler(user, followUserTextField.getText())){
             followUserTextField.setText("");
-            return;
         }
-        System.out.println("An error occurred");    // debug
+        else
+            JOptionPane.showMessageDialog(null, "The input user id is not valid");
     }
 
     /**
