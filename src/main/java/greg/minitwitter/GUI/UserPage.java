@@ -27,6 +27,12 @@ public class UserPage extends JFrame implements UserObserver {
     private JPanel FollowPanel;
     private final UserHandler userHandler;
 
+    /**
+     * UserPage constructor
+     * Creates the specific user page UI for any user using Java Swing
+     *
+     * @param user the user object that will be bound to this User Page panel
+     */
     public UserPage(User user){
         // Set the User panel window
         setContentPane(UserPanel);
@@ -43,12 +49,14 @@ public class UserPage extends JFrame implements UserObserver {
         followingUser.setEditable(false);
         updatePage(user);
 
+        // Implement action listener for following a user
         followButton.addActionListener(e -> {
             if(followUserTextField.getText().compareTo("") != 0) {
                 follow(user);
             }
         });
 
+        // Implement action listener for posting a tweet
         tweetButton.addActionListener(e -> {
             if(tweetTextArea.getText().compareTo("") != 0) {
                 userHandler.postTweetHandler(user, tweetTextArea.getText());
@@ -57,6 +65,7 @@ public class UserPage extends JFrame implements UserObserver {
         });
 
         // Upon window closing
+        // Remove the reference pointer from UserSubject
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -65,13 +74,25 @@ public class UserPage extends JFrame implements UserObserver {
             }
         });
     }
+
+    /**
+     * method to follow a user. Gets the userID from followUserTextField, the ID for the current user to follow
+     *
+     * @param user the current user
+     */
     private void follow(User user){
         if(userHandler.addFollowingHandler(user, followUserTextField.getText())){
             followUserTextField.setText("");
             return;
         }
-        System.out.println("An error occurred");
+        System.out.println("An error occurred");    // debug
     }
+
+    /**
+     * method to update the page upon first time this User Page is being created
+     *
+     * @param user the user object that will be displayed
+     */
     private void updatePage(User user){
         for (String userID : user.getFollowing()){
             followingUser.setText("* " + userID + "\n" + followingUser.getText());
@@ -83,6 +104,16 @@ public class UserPage extends JFrame implements UserObserver {
         }
     }
 
+    /**
+     * A visitor pattern method that will update part of the page according to the info
+     * update will be called upon:
+     * current user received notification that a followed user posted a new tweet
+     * current user posted a new tweet
+     * current user followed a valid user
+     *
+     * @param userSubject contains the user object to update this page with the relevant data
+     * @param info an enum object indicating to update either the timeline space or the following space
+     */
     @Override
     public void update(UserSubject userSubject, Info info){
         if(info == Info.NEWTWEET) {
