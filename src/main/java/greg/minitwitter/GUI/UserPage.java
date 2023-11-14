@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ListIterator;
 
 public class UserPage extends JFrame implements UserObserver {
@@ -97,7 +96,7 @@ public class UserPage extends JFrame implements UserObserver {
         for (String userID : user.getFollowing()){
             followingUser.setText("* " + userID + "\n" + followingUser.getText());
         }
-        List<String> newsFeed = user.getNewsFeed();
+        LinkedList<String> newsFeed = user.getNewsFeed();
         ListIterator<String> iterator = newsFeed.listIterator(user.getTotalMessages());
         while(iterator.hasPrevious()){
             timelineTextArea.setText(iterator.previous() + "\n\n" + timelineTextArea.getText());

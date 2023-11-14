@@ -10,7 +10,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import java.time.LocalTime;
 import java.util.regex.*;
@@ -20,7 +19,7 @@ public class User extends UserSubject implements Entity, UserObserver {
     private final Group group;
     private final Set<String> following;
     private final Set<String> followers;
-    private final List<String> newsFeed;
+    private final LinkedList<String> newsFeed;
     private final DateTimeFormatter formatter;
     private final String regex = "(?i)\\bgood\\b|\\bgreat\\b|\\bexcellent\\b";
     private final Pattern pattern = Pattern.compile(regex);
@@ -72,7 +71,7 @@ public class User extends UserSubject implements Entity, UserObserver {
         notifyFollowers();
         notifyPanelTweet();
     }
-    public List<String> getNewsFeed(){
+    public LinkedList<String> getNewsFeed(){
         return newsFeed;
     }
     public String getNewestTweet() { return newsFeed.getFirst(); }
