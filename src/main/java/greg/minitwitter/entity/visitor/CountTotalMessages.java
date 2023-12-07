@@ -15,7 +15,7 @@ public class CountTotalMessages implements EntityVisitor{
      * @return total messages of this user
      */
     @Override
-    public int visitUser(User user){
+    public long visitUser(User user){
         return user.getTotalMessages();
     }
 
@@ -26,8 +26,8 @@ public class CountTotalMessages implements EntityVisitor{
      * @return the total messages for all users within this group set
      */
     @Override
-    public int visitGroup(Group group) {
-        int totalMessages = 0;
+    public long visitGroup(Group group) {
+        long totalMessages = 0;
         for (Entity entity : group.getSet()){
             if (entity instanceof User){
                 totalMessages += visitUser((User) entity);

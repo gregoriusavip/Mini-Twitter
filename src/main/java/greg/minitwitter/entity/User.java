@@ -3,6 +3,7 @@ import greg.minitwitter.entity.observer.Info;
 import greg.minitwitter.entity.observer.UserObserver;
 import greg.minitwitter.entity.subject.UserSubject;
 import greg.minitwitter.entity.visitor.EntityVisitor;
+import greg.minitwitter.entity.visitor.EntityVisitorString;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -211,10 +212,20 @@ public class User extends UserSubject implements Entity, UserObserver {
     /**
      * Visitor pattern that takes EntityVisitor for counting specific operations
      * @param visitor any Class that implements EntityVisitor
-     * @return result of any operations as integer
+     * @return result of any operations as long
      */
     @Override
-    public int accept(EntityVisitor visitor){
+    public long accept(EntityVisitor visitor){
+        return visitor.visitUser(this);
+    }
+
+    /**
+     * Visitor pattern that takes EntityVisitor for String return operation
+     * @param visitor any Class that implements EntityVisitor
+     * @return result of any operations as String
+     */
+    @Override
+    public Entity acceptString(EntityVisitorString visitor){
         return visitor.visitUser(this);
     }
 

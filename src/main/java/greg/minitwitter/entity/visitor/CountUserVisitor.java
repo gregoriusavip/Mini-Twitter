@@ -15,7 +15,7 @@ public class CountUserVisitor implements EntityVisitor{
      * @return 1 for each User
      */
     @Override
-    public int visitUser(User user) {
+    public long visitUser(User user) {
         return user.getTotalUser();
     }
 
@@ -26,8 +26,8 @@ public class CountUserVisitor implements EntityVisitor{
      * @return total amount of users of this group
      */
     @Override
-    public int visitGroup(Group group) {
-        int totalUser = 0;
+    public long visitGroup(Group group) {
+        long totalUser = 0;
         for (Entity entity : group.getSet()){
             if (entity instanceof Group){
                 totalUser += visitGroup((Group) entity);

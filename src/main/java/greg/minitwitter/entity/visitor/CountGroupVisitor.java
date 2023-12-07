@@ -10,7 +10,7 @@ import greg.minitwitter.entity.Group;
  */
 public class CountGroupVisitor implements EntityVisitor{
     @Override
-    public int visitUser(User user){
+    public long visitUser(User user){
         // does not need to visit user
         return 0;
     }
@@ -23,8 +23,8 @@ public class CountGroupVisitor implements EntityVisitor{
      * @return the total amount of subgroups within this group set
      */
     @Override
-    public int visitGroup(Group group) {
-        int totalGroup = 0;
+    public long visitGroup(Group group) {
+        long totalGroup = 0;
         for (Entity entity : group.getSet()){
             if (entity instanceof Group){
                 totalGroup += ((Group) entity).getTotalGroup();

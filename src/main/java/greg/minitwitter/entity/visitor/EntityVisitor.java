@@ -8,6 +8,6 @@ import greg.minitwitter.entity.Group;
  */
 public interface EntityVisitor
 {
-    int visitUser(User user);   // method to visit User base object
-    int visitGroup(Group group); // method to visit Group base object
+    long visitUser(User user);   // method to visit User base object
+    long visitGroup(Group group); // method to visit Group base object
 }

@@ -15,7 +15,7 @@ import greg.minitwitter.entity.Group;
      * @return total amount of messages containing positive words
      */
     @Override
-    public int visitUser(User user){
+    public long visitUser(User user){
         return user.getTotalPositiveMessage();
     }
 
@@ -27,8 +27,8 @@ import greg.minitwitter.entity.Group;
      * @return total amount of positive messages within a subgroup
      */
     @Override
-    public int visitGroup(Group group) {
-        int totalMessages = 0;
+    public long visitGroup(Group group) {
+        long totalMessages = 0;
         for (Entity entity : group.getSet()){
             if (entity instanceof User){
                 totalMessages += visitUser((User) entity);

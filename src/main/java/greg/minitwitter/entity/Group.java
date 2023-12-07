@@ -1,6 +1,7 @@
 package greg.minitwitter.entity;
 
 import greg.minitwitter.entity.visitor.EntityVisitor;
+import greg.minitwitter.entity.visitor.EntityVisitorString;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -119,7 +120,12 @@ public class Group implements Entity {
      * @return operation results from visiting this group
      */
     @Override
-    public int accept(EntityVisitor visitor){
+    public long accept(EntityVisitor visitor){
+        return visitor.visitGroup(this);
+    }
+
+    @Override
+    public Entity acceptString(EntityVisitorString visitor){
         return visitor.visitGroup(this);
     }
 

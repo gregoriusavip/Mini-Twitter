@@ -3,10 +3,7 @@ package greg.minitwitter.admin;
 import greg.minitwitter.entity.Entity;
 import greg.minitwitter.entity.Group;
 import greg.minitwitter.entity.Root;
-import greg.minitwitter.entity.visitor.CountGroupVisitor;
-import greg.minitwitter.entity.visitor.CountPositiveMessage;
-import greg.minitwitter.entity.visitor.CountTotalMessages;
-import greg.minitwitter.entity.visitor.CountUserVisitor;
+import greg.minitwitter.entity.visitor.*;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -52,13 +49,21 @@ public class AdminHandler {
         return root.addGroup(groupID, (Group) group);
     }
 
+    public String getLatestUser(){
+        Entity latestUser = root.acceptString(new GetLatestTimeUser());
+        if(latestUser != null){
+            return latestUser.getID();
+        }
+        return "null";
+    }
+
     /**
      * method for AdminPage to call for getting the total amount of users
      * detail of getTotalUser is implemented in the CountUserVisitor class
      * uses root as the base group to traverse
      * @return the total amount of users
      */
-    public Integer getTotalUser(){
+    public Long getTotalUser(){
         return root.accept(new CountUserVisitor());
     }
 
@@ -68,7 +73,7 @@ public class AdminHandler {
      * uses root as the base group to traverse
      * @return the total amount of groups
      */
-    public Integer getTotalGroup(){
+    public Long getTotalGroup(){
         return root.accept(new CountGroupVisitor());
     }
 
@@ -78,7 +83,7 @@ public class AdminHandler {
      * uses root as the base group to traverse
      * @return the total amount of messages for all users
      */
-    public Integer getTotalMessages() { return root.accept(new CountTotalMessages()); }
+    public Long getTotalMessages() { return root.accept(new CountTotalMessages()); }
 
     /**
      * private method to handle getting the total amount of positive words for all messages
@@ -86,7 +91,7 @@ public class AdminHandler {
      * uses root as the base group to traverse
      * @return the total amount of positive words for all messages
      */
-    private Integer getTotalPositiveMessages() { return root.accept(new CountPositiveMessage()); }
+    private Long getTotalPositiveMessages() { return root.accept(new CountPositiveMessage()); }
 
     /**
      * method for AdminPage to call for getting the total amount of positive messages as percentage
@@ -94,11 +99,11 @@ public class AdminHandler {
      * @return the percentage of positive messages
      */
     public Double getPositiveMessagePercentage() {
-        int denominator = getTotalMessages();
+        long denominator = getTotalMessages();
         if (denominator == 0){
             return 0.0;
         }
-        int numerator = getTotalPositiveMessages();
+        long numerator = getTotalPositiveMessages();
         double result = (double) numerator / denominator;
         result *= 100;
         return result;

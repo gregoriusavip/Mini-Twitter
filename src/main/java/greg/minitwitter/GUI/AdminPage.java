@@ -30,6 +30,7 @@ public class AdminPage extends JFrame{
     private JPanel MainPanel;
     private JLabel ControlLabel;
     private JButton verifyValidIDsButton;
+    private JButton getLastUpdatedUserButton;
     private final AdminHandler admin;
     private final DefaultTreeModel treeModel = (DefaultTreeModel) UserGroupTree.getModel();
     private final DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
@@ -113,6 +114,10 @@ public class AdminPage extends JFrame{
 
         verifyValidIDsButton.addActionListener((e -> {
             getIDValidity();
+        }));
+
+        getLastUpdatedUserButton.addActionListener((e -> {
+            getLatestUser();
         }));
     }
 
@@ -207,6 +212,10 @@ public class AdminPage extends JFrame{
             return;
         }
         JOptionPane.showMessageDialog(null, "INVALID ID IS DETECTED");
+    }
+
+    private void getLatestUser(){
+        JOptionPane.showMessageDialog(null, admin.getLatestUser());
     }
 
     /**
