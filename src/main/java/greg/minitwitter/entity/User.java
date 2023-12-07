@@ -35,6 +35,7 @@ public class User extends UserSubject implements Entity, UserObserver {
     private final Set<String> followers;
     private final LinkedList<String> newsFeed;
     private final DateTimeFormatter formatter;  // formatter for timestamps of a tweet
+    private final long creationTime;
 
     // defining regex for positive words pattern
     private final String regex = "(?i)\\bgood\\b|\\bgreat\\b|\\bexcellent\\b";
@@ -55,6 +56,7 @@ public class User extends UserSubject implements Entity, UserObserver {
         followers = new HashSet<>();
         newsFeed = new LinkedList<>();
         formatter = DateTimeFormatter.ofPattern("HH:mm");
+        creationTime = System.currentTimeMillis();
     }
 
     /**
@@ -174,6 +176,11 @@ public class User extends UserSubject implements Entity, UserObserver {
      * @return total positive messages
      */
     public int getTotalPositiveMessage() { return totalPositiveMessage; }
+
+    @Override
+    public long getCreationTime(){
+        return creationTime;
+    }
 
     /**
      * Update method for updating newsFeed if any changes occur within it

@@ -24,6 +24,7 @@ public class UserPage extends JFrame implements UserObserver {
     private JTextArea followingUser;
     private JPanel MainPanel;
     private JPanel FollowPanel;
+    private JLabel CreationTime;
     private final UserHandler userHandler;
 
     /**
@@ -43,6 +44,7 @@ public class UserPage extends JFrame implements UserObserver {
         // Initialize variables
         userHandler = UserHandler.getInstance();
         UserLabel.setText("Hi: " + user.getID());
+        CreationTime.setText(String.valueOf(user.getCreationTime()));
         user.attach(this);
         timelineTextArea.setEditable(false);
         followingUser.setEditable(false);

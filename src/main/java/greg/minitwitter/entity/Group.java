@@ -19,6 +19,7 @@ public class Group implements Entity {
     private final String groupID;
     private final Group parentGroup;
     private final Set<Entity> userGroupSet; // set containing Entity objects
+    private final long creationTime;
 
     /**
      * Constructor for Group object
@@ -29,6 +30,7 @@ public class Group implements Entity {
         this.groupID = groupID;
         this.parentGroup = parentGroup;
         userGroupSet = new HashSet<>();
+        creationTime = System.currentTimeMillis();
     }
 
     /**
@@ -103,6 +105,11 @@ public class Group implements Entity {
      */
     public int getTotalGroup(){
         return 1;
+    }
+
+    @Override
+    public long getCreationTime(){
+        return creationTime;
     }
 
     /**
