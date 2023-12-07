@@ -61,6 +61,20 @@ public class Root extends Group{
     }
 
     /**
+     * method to verify if all ids (group and user) is valid
+     * every id is going to be unique because of hashset
+     * therefore, only need to verify if the string does contain spaces
+     * @return true if all id is valid, false otherwise
+     */
+    public boolean verifyIDs(){
+        for(String id: ids){
+            if (id.contains(" "))
+                return false;
+        }
+        return true;
+    }
+
+    /**
      * getters for Set of Entity
      * Set of Entity only contains reference point to user/group in Root's layer
      * any reference point for user/group inside other subgroup need to be grabbed from within that subgroup

@@ -29,6 +29,7 @@ public class AdminPage extends JFrame{
     private JPanel ControlPanel;
     private JPanel MainPanel;
     private JLabel ControlLabel;
+    private JButton verifyValidIDsButton;
     private final AdminHandler admin;
     private final DefaultTreeModel treeModel = (DefaultTreeModel) UserGroupTree.getModel();
     private final DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
@@ -108,6 +109,10 @@ public class AdminPage extends JFrame{
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) UserGroupTree.getLastSelectedPathComponent();
             Object nodeInfo = node.getUserObject();
             new UserPage((User)nodeInfo);
+        }));
+
+        verifyValidIDsButton.addActionListener((e -> {
+            getIDValidity();
         }));
     }
 
@@ -194,6 +199,14 @@ public class AdminPage extends JFrame{
     private void getPositivePercentage(){
         textStatisticsPane.setText("Total Positive Messages in Percentage: "
                 + String.format("%.2f", admin.getPositiveMessagePercentage()) + "%");
+    }
+
+    private void getIDValidity(){
+        if(admin.verifyIDs()) {
+            JOptionPane.showMessageDialog(null, "ALL ID IS VALID");
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "INVALID ID IS DETECTED");
     }
 
     /**

@@ -115,6 +115,10 @@ public class AdminHandler {
         }
     }
 
+    public boolean verifyIDs(){
+        return root.verifyIDs();
+    }
+
     /**
      * method to get the root
      * @return root object
