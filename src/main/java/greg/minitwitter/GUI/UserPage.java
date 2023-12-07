@@ -25,6 +25,7 @@ public class UserPage extends JFrame implements UserObserver {
     private JPanel MainPanel;
     private JPanel FollowPanel;
     private JLabel CreationTime;
+    private JLabel lastUpdateTime;
     private final UserHandler userHandler;
 
     /**
@@ -44,7 +45,7 @@ public class UserPage extends JFrame implements UserObserver {
         // Initialize variables
         userHandler = UserHandler.getInstance();
         UserLabel.setText("Hi: " + user.getID());
-        CreationTime.setText(String.valueOf(user.getCreationTime()));
+        CreationTime.setText("Creation Time: " + user.getCreationTime());
         user.attach(this);
         timelineTextArea.setEditable(false);
         followingUser.setEditable(false);
@@ -63,6 +64,7 @@ public class UserPage extends JFrame implements UserObserver {
         tweetButton.addActionListener(e -> {
             if(tweetTextArea.getText().compareTo("") != 0) {
                 userHandler.postTweetHandler(user, tweetTextArea.getText());
+                lastUpdateTime.setText("Last Update Time: " + user.getLastUpdateTime());
                 tweetTextArea.setText("");
             }
             else
@@ -107,6 +109,7 @@ public class UserPage extends JFrame implements UserObserver {
         while(iterator.hasPrevious()){
             timelineTextArea.setText(iterator.previous() + "\n\n" + timelineTextArea.getText());
         }
+        lastUpdateTime.setText("Last Update Time: " + user.getLastUpdateTime());
     }
 
     /**
@@ -123,6 +126,7 @@ public class UserPage extends JFrame implements UserObserver {
     public void update(UserSubject userSubject, Info info){
         if(info == Info.TWEET) {
             timelineTextArea.setText(((User) userSubject).getNewestTweet() + "\n\n" + timelineTextArea.getText());
+            lastUpdateTime.setText("Last Update Time: " + ((User) userSubject).getLastUpdateTime());
         }
         else{
             String newFollowing = ((User) userSubject).getNewestFollowing();

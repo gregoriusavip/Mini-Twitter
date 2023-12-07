@@ -36,6 +36,7 @@ public class User extends UserSubject implements Entity, UserObserver {
     private final LinkedList<String> newsFeed;
     private final DateTimeFormatter formatter;  // formatter for timestamps of a tweet
     private final long creationTime;
+    private long lastUpdateTime = 0;    // 0 when no tweet has been posted in their timeline
 
     // defining regex for positive words pattern
     private final String regex = "(?i)\\bgood\\b|\\bgreat\\b|\\bexcellent\\b";
@@ -116,6 +117,7 @@ public class User extends UserSubject implements Entity, UserObserver {
             totalPositiveMessage += 1;
         LocalTime currentTime = LocalTime.now();
         newsFeed.addFirst("@" + userID + " (" + currentTime.format(formatter) + ") " + ":" + tweet);
+        lastUpdateTime = System.currentTimeMillis();
         notifyFollowers();  // update newsFeed for any user following this account
         notifyPanelTweet(); // update newsFeed UI for any panel that is observing this account
     }
@@ -177,6 +179,8 @@ public class User extends UserSubject implements Entity, UserObserver {
      */
     public int getTotalPositiveMessage() { return totalPositiveMessage; }
 
+    public long getLastUpdateTime(){ return lastUpdateTime; }
+
     @Override
     public long getCreationTime(){
         return creationTime;
@@ -200,6 +204,7 @@ public class User extends UserSubject implements Entity, UserObserver {
         if (matcher.find()) // find if it contains positive word
             totalPositiveMessage += 1;  // update the positive word counter for the observers
         this.newsFeed.addFirst(tweet);  // update the newsFeed because this object follows userSubject
+        this.lastUpdateTime = System.currentTimeMillis();
         notifyPanelTweet(); // notify for any panel about these changes and update their UI
     }
 
